@@ -39,6 +39,7 @@ function register()
             .then(function() {
                 //alert('User created and data added to the database!');
                 window.location.href = "index.html";
+                alert("successfull register")
             })
             .catch(function(error) {
                 alert(error.message);
@@ -46,8 +47,8 @@ function register()
   })
   .catch((error) => {
     // Handle errors
-    const errorCode = error.code;
     const errorMessage = error.message;
+    alert(errorMessage);
     console.error('Error creating user:', errorMessage);
   });
 }
@@ -60,18 +61,13 @@ function login () {
 
     auth.signInWithEmailAndPassword(email, password)
         .then(function() {
-            // Declare user variable
-            var user = auth.currentUser
-
             //alert('User Logged In!!')
             window.location.href = "home.html"
-
         })
         .catch(function(error) {
             // Firebase will use this to alert of its errors
             // var error_code = error.code
             var error_message = error.message
-
             alert(error_message)
         })
 
@@ -99,39 +95,46 @@ function add_incident()
     let lap = document.getElementById('lap').value
     let evidence = document.getElementById('evidence').value
     let description = document.getElementById('text-input').value
-    let fullName = ""
+    var fullName = ""
 
     const usersRef = database.ref('users');
 
-if (auth.currentUser) {
-  usersRef.child(auth.currentUser.uid).once('value')
+    usersRef.once('value')
     .then((snapshot) => {
-      const userData = snapshot.val();
-    //   fullName = userData.full_name;
-      console.log('User Full Name:', userData);
+      const data = snapshot.val();
+      if (data) {
+        Object.keys(data).forEach((key) => {
+          const uid = data[key].uid;
+          if(auth.currentUser.uid == uid)
+          {
+            fullName = data[key].full_name;
+            var incident_data = {
+                league_race : league_race,
+                created_driver : fullName,
+                involved_driver : involved_driver,
+                other_drivers : other_drivers,
+                session_type : session_type,
+                lap : lap,
+                evidence : evidence,
+                description : description,
+                involved_driver_react : "",
+                judge_decision : "",
+                status : "in progress",
+                }
+                database.ref('incidents').push(incident_data)
+                    .then(function() {
+                        //alert('User created and data added to the database!');
+                        window.location.href = "home.html";
+                        alert("incident was added successfully");
+                    })
+                    .catch(function(error) {
+                        alert(error.message);
+                    });
+          }
+        });
+      }
     })
     .catch((error) => {
-      console.error('Error getting user data:', error);
+      console.error('Error reading data:', error);
     });
-}
-    var incident_data = {
-        league_race : league_race,
-        created_driver : full_name,
-        involved_driver : involved_driver,
-        other_drivers : other_drivers,
-        session_type : session_type,
-        lap : lap,
-        evidence : evidence,
-        description : description,
-        judge_decision : "",
-        status : "in progress",
-        }
-        database.ref('incidents').push(incident_data)
-            .then(function() {
-                //alert('User created and data added to the database!');
-                window.location.href = "home.html";
-            })
-            .catch(function(error) {
-                alert(error.message);
-            });
 }

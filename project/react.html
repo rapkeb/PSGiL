@@ -20,6 +20,20 @@
                 <div class="divider d-flex align-items-center my-4">
                     <p id="title" style="color: white;" class="text-center fw-bold mx-3 mb-0 label-xxlarge">Incidents</p>
                 </div>
+                <div id="search_input">
+                <!-- Password input -->
+                <div class="form-outline mb-3">
+                    <label class="form-label" for="form3Example4" style="float: left;">Incident ID</label>
+                    <input type="text" id="find_incident" class="form-control"
+                      placeholder="Enter incident ID" aria-label=""/>
+                  </div>
+                  <div class="text-center mt-4 pt-2" id="button_container">
+                    <button id="find_incident_button" onclick="find_incident()" type="button"
+                    class="btn btn-primary">Find</button>
+                </div>
+            </div>
+                <br>
+                  <br>
                 <table id="incidents">
                     <tr>
                       <th>Incident ID</th>
@@ -36,6 +50,9 @@
                       <th>Status</th>
                     </tr>
                   </table>
+                  <br>
+                  <br>
+                  <div id="react"></div>
 </div>
 </div>
 </div>
@@ -46,5 +63,5 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 <script src="firebase.js"></script>
 <script src="permissions.js"></script>
-<script src="all_incidents.js"></script>
+<script src="react.js"></script>
 </html>

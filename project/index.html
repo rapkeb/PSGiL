@@ -12,14 +12,15 @@
       function handleKeyDown(event) {
             if (event.key === 'Enter') {
               event.preventDefault(); // Prevent form submission
-              login(); // Call the login function
+              if(check_email() && check_password())
+                login(); // Call the login function
             }
           }
   </script>
 
 </head>
 <body>
-      <section class="">
+      <section class="vh-100">
         <div id="form_container" class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-0">
@@ -31,7 +32,7 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label text-start offset-sm-0" style="float: left;">Email address</label>
-                  <input onkeydown="handleKeyDown(event)" type="email" id="email" class="form-control"
+                  <input type="email" id="email" class="form-control"
                     placeholder="Enter email" aria-label="" />
                 </div>
       
@@ -43,8 +44,8 @@
                 </div>
       
                 <div class="text-center text-lg-start mt-4 pt-2" id="button_container">
-                  <button id="login_button" onclick="login()" type="button"
-                  class="btn btn-primary offset-sm-3">Login</button>
+                  <button id="login_button" onclick="return check_email() && check_password() && login()" type="button"
+                  class="btn btn-primary offset-xl-4">Login</button>
                 </div>
                 <p id="register_text" class="large fw-bold mt-2 pt-1 mb-0 offset-sm-2">
                   Don't have an account?</p>
@@ -63,5 +64,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
 <script src="firebase.js"></script>
+<script src="validation.js"></script>
 
 </html>

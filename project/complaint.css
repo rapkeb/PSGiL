@@ -4,6 +4,7 @@ html, body {
     background: -webkit-linear-gradient(25deg, #fb0303, rgb(253, 43, 43), #ff8383, #f7bdbd);
     font-family: monospace;
     color: #eee;
+    font-size: 16px;
 }
 
 .divider:after,
@@ -18,102 +19,17 @@ html, body {
     height: calc(100% - 73px);
 }
 
-    
-.drop {
-    width: 200px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-.place{
-    position: absolute;
-    left: 50%;
-}
-
-.label-xlarge {
-    font-size:x-large;
-}
-
 .label-xxlarge {
     font-size:xx-large;
-}
-    
-.dropbtn:focus {
-    outline: none;
-}
-    
-.dropdown-content option {
-    display: block;
-}
-    
-.dropdown:focus .dropdown-content {
-    display: block;
-}
-
-#saveButton{
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    border: 1px solid #b3b3b3;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    width: 40%;
-    display: inline-block;
-}
-
-#saveButton:hover {
-    background-color: #0096FF;
-    color: #fff;
 }
 
 #logo{
     margin-top: 0px;
     height: 53px;
     top: 0;
+    float: right;
 }
 
-.form-outline{
-    display: inline-flex;
-    margin-top: 10px;
-}
-
-.hamburger{
-    font-size: 2em;
-    margin-top: 5%;
-}
-
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
-
-}
-
-#text-size{
-    margin-top: 8px;
-}
-
-#speakButton{
-    text-align: center;
-}
-
-#speakButton:hover{
-    cursor: pointer;
-}
-
-#text-input{
-    font-size: large;
-}
-
-#speakButton2{
-    font-size: 500%;
-}
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -141,3 +57,15 @@ background: #eee;
   .topnav a.active {
     background-color: #e04b4b;
   }
+
+  #submit_incident_button{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    /* margin-left: 30%; */
+    border-color: #ff5858;
+    background-color: #fc2d2d;
+}
+
+#submit_incident_button:hover{
+    background-color: #fc8b8b;
+}

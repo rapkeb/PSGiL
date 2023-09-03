@@ -13,15 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <!-- <script src="firebase.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script></head>
-    <script src="./complaint.js"></script>
 </head>
 <body>
-    <div class="topnav">
-        <img id="logo" src="images/Logo.jpeg">
-        <a class="active" href="home.html">Home</a>
-        <a href="complaint.html">Make an incident</a>
-        <a href="all_incidents.html">All incidents</a>
-        <a href="approve_registration.html">Approve registration</a>
+    <div class="topnav" id="navbar">
       </div>
   <section class="">
     <div class="container-fluid h-custom">
@@ -36,20 +30,14 @@
                       <th>Username</th>
                       <th>Approve</th>
                     </tr>
-                    <tr>
-                      <td>Alfreds Futterkiste</td>
-                      <td>Maria Anders</td>
-                      <td>Germany</td>
-                    </tr>
-                    <tr>
-                      <td>Centro comercial Moctezuma</td>
-                      <td>Francisco Chang</td>
-                      <td>Mexico</td>
-                    </tr>
                   </table>
 </div>
 </div>
 </div>
 </section>
 </body>
+<script src="firebase.js"></script>
+<script src="permissions.js"></script>
+<script src="admin_validation.js"></script>
+<script src="approve_registration.js"></script>
 </html>
