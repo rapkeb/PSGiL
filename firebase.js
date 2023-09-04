@@ -1,4 +1,3 @@
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -124,6 +123,7 @@ function add_incident()
                 database.ref('incidents').push(incident_data)
                     .then(function() {
                         //alert('User created and data added to the database!');
+                        send_discord_incident();
                         window.location.href = "home.html";
                         alert("incident was added successfully");
                     })
@@ -137,4 +137,18 @@ function add_incident()
     .catch((error) => {
       console.error('Error reading data:', error);
     });
+}
+
+function send_discord_incident()
+{
+  const request = new XMLHttpRequest();
+  request.open("POST", "https://discordapp.com/api/webhooks/1148196640600096828/moCj5zGrUXITRGP3euikdJn1YsBoX4xa57DKbiSN15hZsgbJAy2AMsutX1TpkoPMJ7iL");
+  // replace the url in the "open" method with yours
+  request.setRequestHeader('Content-type', 'application/json');
+  const params = {
+    username: "PSGIL Stweard Bot V1.0",
+    avatar_url: "",
+    content: "The message to send"
+  }
+  request.send(JSON.stringify(params));
 }

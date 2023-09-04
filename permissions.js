@@ -14,10 +14,10 @@ firebase.auth().onAuthStateChanged((user) => {
             Object.keys(data).forEach((key) => {
                 const email = data[key].email;
                 const approved = data[key].approved;
-                admin = data[key].admin;
                 if(email == user.email && approved == true)
                 {
                     found = true;
+                    admin = data[key].admin;
                 }
             });
             if(found == false)

@@ -100,6 +100,12 @@ elementToRemove.remove();
 function decision_for_incident(id)
 {
     const decision = document.getElementById('decision_incident').value;
+    if(reaction.length < 1)
+    {
+      alert("decision should not be empty");
+    }
+    else
+    {
     const usersRef = database.ref('incidents');
     usersRef.child(id).once('value')
   .then((snapshot) => {
@@ -123,4 +129,5 @@ function decision_for_incident(id)
   .catch((error) => {
     console.error('Error reading data:', error);
   });
+}
 }

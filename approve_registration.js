@@ -53,7 +53,7 @@ usersRef.once('value')
               // Update the specified fields within the data at the location
               usersRef.child(key).update(updates)
                 .then(() => {
-                  console.log('Data successfully updated!');
+                  alert(email + ' successfully approved!');
                 })
                 .catch((error) => {
                   console.error('Error updating data:', error);

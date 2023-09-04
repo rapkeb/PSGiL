@@ -8,7 +8,6 @@ function find_incident()
       .then((snapshot) => {
         const data = snapshot.val();
         if (data) {
-            alert("ff")
             var row = incidents.insertRow();
             var cell13 = row.insertCell(0);
             cell13.innerHTML = id;
@@ -100,6 +99,12 @@ elementToRemove.remove();
 function react_for_incident(id)
 {
     const reaction = document.getElementById('react_incident').value;
+    if(reaction.length < 1)
+    {
+      alert("reaction should not be empty");
+    }
+    else
+    {
     const usersRef = database.ref('incidents');
     usersRef.child(id).once('value')
   .then((snapshot) => {
@@ -122,4 +127,5 @@ function react_for_incident(id)
   .catch((error) => {
     console.error('Error reading data:', error);
   });
+}
 }
