@@ -119,6 +119,7 @@ function add_incident()
                 evidence : evidence,
                 description : description,
                 involved_driver_react : "",
+                involved_driver_evidence : "",
                 judge_decision : "",
                 status : "in progress",
                 }
