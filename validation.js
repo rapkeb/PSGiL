@@ -71,6 +71,7 @@ function check_evidence() {
     }
     try {
       new URL(evidence);
+      document.getElementById("evidence").value = evidence;
       return true;
     } catch (err) {
         alert("url is invalid")
