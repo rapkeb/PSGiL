@@ -26,7 +26,7 @@ incidentsRef.once('value')
         var cell6 = row.insertCell(8);
         cell6.innerHTML = data[key].description;
         var cell7 = row.insertCell(9);
-        cell7.innerHTML = data[key].evidence;
+        cell7.innerHTML = '<a href="' + data[key].evidence + '" target="_blank">evidence</a>';  
       });
     }
   })
