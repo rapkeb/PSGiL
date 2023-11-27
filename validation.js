@@ -55,9 +55,9 @@ function check_lap()
 {
     var st = document.getElementById("session_type").value;
     var lap = document.getElementById("lap").value;
-    if(lap < 0 || (lap == "" && st != "quali"))
+    if(lap < 0 || lap > 100 || (lap == "" && st != "quali"))
     {
-        alert("lap is empty or less than 0")
+        alert("lap is empty or less than 0 or greater than 100")
         return false;
     }
     return true;
@@ -65,6 +65,10 @@ function check_lap()
 
 function check_evidence() {
     var evidence = document.getElementById("evidence").value;
+    // Prepend "http://" if the URL doesn't include a protocol
+    if (!evidence.includes('://')) {
+        evidence = 'http://' + evidence;
+    }
     try {
       new URL(evidence);
       return true;
