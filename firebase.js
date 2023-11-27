@@ -87,6 +87,7 @@ function logOut(){
 function add_incident()
 {
     // Get all our input fields
+    let category = document.getElementById('category').value
     let league_race = document.getElementById('league_race').value
     let involved_driver = document.getElementById('involved_driver').value
     let other_drivers = document.getElementById('other_drivers').value
@@ -108,6 +109,7 @@ function add_incident()
           {
             fullName = data[key].full_name;
             var incident_data = {
+                category : category,
                 league_race : league_race,
                 created_driver : fullName,
                 involved_driver : involved_driver,
