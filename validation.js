@@ -53,8 +53,9 @@ function check_league_race()
 
 function check_lap()
 {
+    var st = document.getElementById("session_type").value;
     var lap = document.getElementById("lap").value;
-    if(lap == "" || lap < 0)
+    if(lap < 0 || (lap == "" && st != "quali"))
     {
         alert("lap is empty or less than 0")
         return false;
