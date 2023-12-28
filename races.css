@@ -1,0 +1,20 @@
+#races {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#races td, #races th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#races tr:hover {background-color: #ddd;}
+
+#races th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #be2121;
+  color: white;
+}

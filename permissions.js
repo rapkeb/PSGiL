@@ -65,6 +65,7 @@ firebase.auth().onAuthStateChanged((user) => {
             { text: 'All incidents', href: 'all_incidents.html' },
             { text: 'React on incident', href: 'react.html' },
             { text: 'Judge an incident', href: 'judge_decision.html' },
+            { text: 'Races', href: 'races.html' },
             { text: 'Approve registration', href: 'approve_registration.html' },
             { text: 'Sign out', href: '#', onclick: 'logOut()' }
             ];

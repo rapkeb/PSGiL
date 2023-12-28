@@ -29,6 +29,8 @@ function find_incident()
             cell6.innerHTML = data.description;
             var cell7 = row.insertCell(9);
             cell7.innerHTML = data.evidence;
+            var cell8 = row.insertCell(10);
+            cell8.innerHTML = data.evidence2;
             add_react(id);
         }
       })
@@ -152,7 +154,9 @@ function react_for_incident(id)
 function check_evidence1() {
   var evidence = document.getElementById("react_incident_evidence").value;
   // Prepend "http://" if the URL doesn't include a protocol
-  if (!evidence.includes('://')) {
+  if(evidence != "")
+  {
+    if (!evidence.includes('://')) {
       evidence = 'http://' + evidence;
   }
   try {
@@ -162,5 +166,6 @@ function check_evidence1() {
   } catch (err) {
       alert("url is invalid")
     return false;
+  }
   }
 }

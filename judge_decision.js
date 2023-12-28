@@ -2,7 +2,7 @@ function find_incident()
 {
     const incidentsRef = database.ref('incidents');
     const incidents = document.getElementById("incidents");
-    const id = document.getElementById("find_incident").value;
+    const id = '-' + document.getElementById("find_incident").value;
     alert(id);
     incidentsRef.child(id).once('value')
       .then((snapshot) => {
@@ -28,11 +28,13 @@ function find_incident()
             cell6.innerHTML = data.description;
             var cell7 = row.insertCell(8);
             cell7.innerHTML = data.evidence;
-            var cell12 = row.insertCell(9);
+            var cell10 = row.insertCell(9);
+            cell10.innerHTML = data.evidence2;
+            var cell12 = row.insertCell(10);
             cell12.innerHTML = data.involved_driver_react;
-            var cell8 = row.insertCell(10);
+            var cell8 = row.insertCell(11);
             cell8.innerHTML = data.judge_decision;
-            var cell9 = row.insertCell(11);
+            var cell9 = row.insertCell(12);
             cell9.innerHTML = data.status;
             add_react(id);
         }

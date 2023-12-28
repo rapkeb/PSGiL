@@ -27,3 +27,22 @@ usersRef.once('value')
   .catch((error) => {
     console.error('Error reading data:', error);
   });
+
+const racesRef = database.ref('races');
+const league_race = document.getElementById("league_race");
+  racesRef.once('value')
+  .then((snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      Object.keys(data).forEach((key) => {
+          const raceName = data[key].raceName;
+          option = document.createElement("option");
+          option.value= raceName;
+          option.text= raceName;
+          league_race.add(option);
+        });
+    }
+  })
+  .catch((error) => {
+    console.error('Error reading data:', error);
+  });

@@ -37,7 +37,7 @@ function check_email()
 
 function check_incident()
 {
-    return check_league_race() && check_lap() && check_evidence() && check_description();
+    return check_league_race() && check_lap() && check_evidence() && check_evidence2() && check_description();
 }
 
 function check_league_race()
@@ -72,6 +72,22 @@ function check_evidence() {
     try {
       new URL(evidence);
       document.getElementById("evidence").value = evidence;
+      return true;
+    } catch (err) {
+        alert("url is invalid")
+      return false;
+    }
+  }
+
+  function check_evidence2() {
+    var evidence = document.getElementById("evidence2").value;
+    // Prepend "http://" if the URL doesn't include a protocol
+    if (!evidence.includes('://')) {
+        evidence = 'http://' + evidence;
+    }
+    try {
+      new URL(evidence);
+      document.getElementById("evidence2").value = evidence;
       return true;
     } catch (err) {
         alert("url is invalid")

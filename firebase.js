@@ -94,6 +94,7 @@ function add_incident()
     let session_type = document.getElementById('session_type').value
     let lap = document.getElementById('lap').value
     let evidence = document.getElementById('evidence').value
+    let evidence2 = document.getElementById('evidence2').value
     let description = document.getElementById('text-input').value
     var fullName = ""
 
@@ -117,6 +118,7 @@ function add_incident()
                 session_type : session_type,
                 lap : lap,
                 evidence : evidence,
+                evidence2 : evidence2,
                 description : description,
                 involved_driver_react : "",
                 involved_driver_evidence : "",
