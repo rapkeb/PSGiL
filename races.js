@@ -67,7 +67,6 @@ racesRef.once('value')
 
 function add_race1()
 {
-  alert("ff");
     let raceName = document.getElementById("race_name").value;
     const racesRef = database.ref('races');
     var race_data = {

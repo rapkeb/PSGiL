@@ -28,6 +28,5 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
       // No user is logged in
         window.location.href = "index.html";
-        alert('No user is logged in.');
     }
   });

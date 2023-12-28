@@ -3,7 +3,6 @@ function find_incident()
     const incidentsRef = database.ref('incidents');
     const incidents = document.getElementById("incidents");
     const id = '-' + document.getElementById("find_incident").value;
-    alert(id);
     incidentsRef.child(id).once('value')
       .then((snapshot) => {
         const data = snapshot.val();
