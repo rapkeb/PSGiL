@@ -7,7 +7,6 @@ usersRef.once('value')
       Object.keys(data).forEach((key) => {
         if(data[key].approved == false)
         {
-            alert("yes")
             const email = data[key].email;
             const full_name = data[key].full_name;
             tr = document.createElement("tr");

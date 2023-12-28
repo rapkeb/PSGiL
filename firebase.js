@@ -122,7 +122,15 @@ function add_incident()
                 description : description,
                 involved_driver_react : "",
                 involved_driver_evidence : "",
-                judge_decision : "",
+                penlaty_classification : "",
+                offense : "",
+                details : "",
+                penlaty_time : "",
+                penlaty_positions : "",
+                penlaty_points : "",
+                warning : "",
+                penlaty_action : "",
+                penlaty_action_value : "",
                 status : "in progress",
                 }
                 database.ref('incidents').push(incident_data)

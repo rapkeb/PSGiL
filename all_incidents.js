@@ -8,7 +8,7 @@ incidentsRef.once('value')
       Object.keys(data).forEach((key) => {
         var row = incidents.insertRow();
         var cell13 = row.insertCell(0);
-        cell13.innerHTML = key.substring(1);;
+        cell13.innerHTML = key.substring(1);
         var cell14 = row.insertCell(1);
         cell14.innerHTML = data[key].category;
         var cell1 = row.insertCell(2);
@@ -29,6 +29,9 @@ incidentsRef.once('value')
         cell7.innerHTML = '<a href="' + data[key].evidence + '" target="_blank">evidence</a>';
         var cell8 = row.insertCell(10);
         cell8.innerHTML = '<a href="' + data[key].evidence2 + '" target="_blank">evidence2</a>';  
+        var cell18 = row.insertCell(11);
+        var destinationPageUrl = 'full_incident.html' + '?key=' + key;
+        cell18.innerHTML = '<a href="' + destinationPageUrl + '" target="_blank">full incident</a>';  
       });
     }
   })
