@@ -1,40 +1,39 @@
-function find_incident()
-{
-    const incidentsRef = database.ref('incidents');
-    const incidents = document.getElementById("incidents");
-    const id = '-' + document.getElementById("find_incident").value;
-    incidentsRef.child(id).once('value')
+function find_incident() {
+  const incidentsRef = database.ref('incidents');
+  const incidents = document.getElementById("incidents");
+  const id = '-' + document.getElementById("find_incident").value;
+  incidentsRef.child(id).once('value')
       .then((snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-            var row = incidents.insertRow();
-            var cell13 = row.insertCell(0);
-            cell13.innerHTML = id.substring(1);
-            var cell14 = row.insertCell(1);
-            cell14.innerHTML = data.category;
-            var cell1 = row.insertCell(2);
-            cell1.innerHTML = data.league_race;
-            var cell11 = row.insertCell(3);
-            cell11.innerHTML = data.created_driver;
-            var cell2 = row.insertCell(4);
-            cell2.innerHTML = data.involved_driver;
-            var cell3 = row.insertCell(5);
-            cell3.innerHTML = data.other_drivers;
-            var cell4 = row.insertCell(6);
-            cell4.innerHTML = data.session_type;
-            var cell5 = row.insertCell(7);
-            cell5.innerHTML = data.lap;
-            var cell6 = row.insertCell(8);
-            cell6.innerHTML = data.description;
-            var cell7 = row.insertCell(9);
-            cell7.innerHTML = data.evidence;
-            var cell8 = row.insertCell(10);
-            cell8.innerHTML = data.evidence2;
-            add_react(id);
-        }
+          const data = snapshot.val();
+          if (data) {
+              var row = incidents.insertRow();
+              var cell13 = row.insertCell(0);
+              cell13.innerHTML = id.substring(1);
+              var cell14 = row.insertCell(1);
+              cell14.innerHTML = data.category;
+              var cell1 = row.insertCell(2);
+              cell1.innerHTML = data.league_race;
+              var cell11 = row.insertCell(3);
+              cell11.innerHTML = data.created_driver;
+              var cell2 = row.insertCell(4);
+              cell2.innerHTML = data.involved_driver;
+              var cell3 = row.insertCell(5);
+              cell3.innerHTML = data.other_drivers;
+              var cell4 = row.insertCell(6);
+              cell4.innerHTML = data.session_type;
+              var cell5 = row.insertCell(7);
+              cell5.innerHTML = data.lap;
+              var cell6 = row.insertCell(8);
+              cell6.innerHTML = data.description;
+              var cell7 = row.insertCell(9);
+              cell7.innerHTML = `<a href="${data.evidence}" target="_blank">Evidence 1</a>`;
+              var cell8 = row.insertCell(10);
+              cell8.innerHTML = `<a href="${data.evidence2}" target="_blank">Evidence 2</a>`;
+              add_react(id);
+          }
       })
       .catch((error) => {
-        console.error('Error reading data:', error);
+          console.error('Error reading data:', error);
       });
 }
 
