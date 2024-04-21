@@ -39,8 +39,8 @@ incidentsRef.child(incidentId).once('value')
     var row1 = reaction.insertRow();
     var cell20 = row1.insertCell(0);
     cell20.innerHTML = data.involved_driver_react;
-    var cell21 = row1.insertCell(1);
-    cell21.innerHTML = data.involved_driver_evidence;  
+    var cell21 = row1.insertCell(1); 
+    cell21.innerHTML = '<a href="' + data.involved_driver_evidence + '" target="_blank">involved_driver_evidence</a>';
 
     var row2 = decision.insertRow();
     var cell30 = row2.insertCell(0);

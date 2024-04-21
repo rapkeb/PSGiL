@@ -156,7 +156,7 @@ function add_incident() {
 
 function send_discord_incident(incidentDetails, userData) {
   const request = new XMLHttpRequest();
-  request.open("POST", "https://discord.com/api/webhooks/1230401557908946944/5AyFJUUee0o26hH1Qf1KB5k4mpaUrTYUDUv-clWIvPRn_E3omKDZlnODNPFh_ZDjC69I");
+  request.open("POST", "https://discord.com/api/webhooks/1201085923270611004/y1GjpIf8b_u4fPSKgpChwR0P2bwLhPmj3HvdX8GZdYIW_-QYlvMuwg1f5g8Sh0UU4_k8");
   request.setRequestHeader('Content-type', 'application/json');
 
   const createdDriver = getUserIDFromFullName(incidentDetails.created_driver, userData);
@@ -190,5 +190,3 @@ function getUserIDFromFullName(fullName, userData) {
   }
   return ""; // Returning empty string if user not found
 }
-
-//${incidentDetails.involved_driver}
