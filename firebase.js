@@ -22,6 +22,7 @@ function register()
      let email = document.getElementById('email').value
      let password = document.getElementById('password').value
      let full_name = document.getElementById('full_name').value
+     let discord_id = document.getElementById('discord_id').value
 
      auth.createUserWithEmailAndPassword(email, password).then(() => {
     // User account created successfully
@@ -29,6 +30,7 @@ function register()
     console.log('User created:', user);
     var user_data = {
         email : email,
+        discord_id : discord_id,
         full_name : full_name,
         uid : user.uid,
         approved : false,
@@ -136,7 +138,7 @@ function add_incident()
                 database.ref('incidents').push(incident_data)
                     .then(function() {
                         //alert('User created and data added to the database!');
-                        send_discord_incident();
+                        send_discord_incident(incident_data);
                         window.location.href = "home.html";
                         alert("incident was added successfully");
                     })
@@ -152,16 +154,28 @@ function add_incident()
     });
 }
 
-function send_discord_incident()
-{
+function send_discord_incident(incidentDetails) {
   const request = new XMLHttpRequest();
-  request.open("POST", "https://discordapp.com/api/webhooks/1148196640600096828/moCj5zGrUXITRGP3euikdJn1YsBoX4xa57DKbiSN15hZsgbJAy2AMsutX1TpkoPMJ7iL");
-  // replace the url in the "open" method with yours
+  request.open("POST", "https://discord.com/api/webhooks/1230401557908946944/5AyFJUUee0o26hH1Qf1KB5k4mpaUrTYUDUv-clWIvPRn_E3omKDZlnODNPFh_ZDjC69I");
   request.setRequestHeader('Content-type', 'application/json');
+  
   const params = {
     username: "PSGIL Stweard Bot V1.0",
     avatar_url: "",
-    content: "The message to send"
-  }
+    content: `New incident added:\n
+              Category: ${incidentDetails.category}\n
+              League/Race: ${incidentDetails.league_race}\n
+              Created Driver: ${incidentDetails.created_driver}\n
+              Involved Driver: <@guyrapke>\n
+              Other Drivers: ${incidentDetails.other_drivers}\n
+              Session Type: ${incidentDetails.session_type}\n
+              Lap: ${incidentDetails.lap}\n
+              Evidence: ${incidentDetails.evidence}\n
+              Evidence2: ${incidentDetails.evidence2}\n
+              Description: ${incidentDetails.description}`
+  };
+  
   request.send(JSON.stringify(params));
 }
+
+//${incidentDetails.involved_driver}

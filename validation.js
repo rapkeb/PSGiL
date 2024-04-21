@@ -20,6 +20,17 @@ function check_full_name()
     return true;
 }
 
+function check_discord_id()
+{
+    var discord_id = document.getElementById("discord_id").value;
+    if(discord_id.length < 1)
+    {
+        alert("discord id should be valid")
+        return false;
+    }
+    return true;
+}
+
 function check_email()
 {
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

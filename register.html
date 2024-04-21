@@ -25,6 +25,13 @@
                     <input type="text" id="full_name" class="form-control"
                         placeholder="Enter full name" aria-label="" />
                 </div>
+
+                <!-- Discord ID input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3" style="float: left;">Discord ID</label>
+                    <input type="text" id="discord_id" class="form-control"
+                        placeholder="Enter discord ID" aria-label="" />
+                </div>
       
                 <!-- Email input -->
                 <div class="form-outline mb-4">
@@ -41,7 +48,7 @@
                 </div>
       
                 <div class="text-center mt-4 pt-2" id="button_container">
-                    <button id="register_button" onclick="return check_full_name() && check_email() && check_password() && register()" type="button"
+                    <button id="register_button" onclick="return check_full_name() && check_discord_id() && check_email() && check_password() && register()" type="button"
                     class="btn btn-primary">Register</button>
                     <button id="back_button" onclick="openIndex()" type="button"
                     class="btn btn-primary">Back</button>
