@@ -166,7 +166,7 @@ function send_discord_incident(incidentDetails, userData) {
   const params = {
       username: "PSGIL Steward Bot V1.0",
       avatar_url: "",
-      content: `Incident was added with ID: ${incidentDetails.incident_id}\n
+      content: `Incident was added with ID: ${incidentDetails.incident_id.substring(1)}\n
           Category: ${incidentDetails.category}\n
           League/Race: ${incidentDetails.league_race}\n
           Created Driver: <@${createdDriver}>\n
