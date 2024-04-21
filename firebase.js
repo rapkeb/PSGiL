@@ -86,96 +86,109 @@ function logOut(){
 
 }
 
-function add_incident()
-{
-    // Get all our input fields
-    let category = document.getElementById('category').value
-    let league_race = document.getElementById('league_race').value
-    let involved_driver = document.getElementById('involved_driver').value
-    let other_drivers = document.getElementById('other_drivers').value
-    let session_type = document.getElementById('session_type').value
-    let lap = document.getElementById('lap').value
-    let evidence = document.getElementById('evidence').value
-    let evidence2 = document.getElementById('evidence2').value
-    let description = document.getElementById('text-input').value
-    var fullName = ""
+function add_incident() {
+  // Get all our input fields
+  let category = document.getElementById('category').value;
+  let league_race = document.getElementById('league_race').value;
+  let involved_driver = document.getElementById('involved_driver').value;
+  let other_drivers = document.getElementById('other_drivers').value;
+  let session_type = document.getElementById('session_type').value;
+  let lap = document.getElementById('lap').value;
+  let evidence = document.getElementById('evidence').value;
+  let evidence2 = document.getElementById('evidence2').value;
+  let description = document.getElementById('text-input').value;
+  let fullName = "";
 
-    const usersRef = database.ref('users');
+  const usersRef = database.ref('users');
 
-    usersRef.once('value')
-    .then((snapshot) => {
+  usersRef.once('value')
+  .then((snapshot) => {
       const data = snapshot.val();
       if (data) {
-        Object.keys(data).forEach((key) => {
-          const uid = data[key].uid;
-          if(auth.currentUser.uid == uid)
-          {
-            fullName = data[key].full_name;
-            var incident_data = {
-                category : category,
-                league_race : league_race,
-                created_driver : fullName,
-                involved_driver : involved_driver,
-                other_drivers : other_drivers,
-                session_type : session_type,
-                lap : lap,
-                evidence : evidence,
-                evidence2 : evidence2,
-                description : description,
-                involved_driver_react : "",
-                involved_driver_evidence : "",
-                penlaty_classification : "",
-                offense : "",
-                details : "",
-                penlaty_time : "",
-                penlaty_positions : "",
-                penlaty_points : "",
-                warning : "",
-                penlaty_action : "",
-                penlaty_action_value : "",
-                status : "in progress",
-                }
-                database.ref('incidents').push(incident_data)
-                    .then(function() {
-                        //alert('User created and data added to the database!');
-                        send_discord_incident(incident_data);
-                        window.location.href = "home.html";
-                        alert("incident was added successfully");
-                    })
-                    .catch(function(error) {
-                        alert(error.message);
-                    });
-          }
-        });
+          Object.keys(data).forEach((key) => {
+              const uid = data[key].uid;
+              if (auth.currentUser.uid === uid) {
+                  fullName = data[key].full_name;
+                  var incident_data = {
+                      category: category,
+                      league_race: league_race,
+                      created_driver: fullName,
+                      involved_driver: involved_driver,
+                      other_drivers: other_drivers,
+                      session_type: session_type,
+                      lap: lap,
+                      evidence: evidence,
+                      evidence2: evidence2,
+                      description: description,
+                      involved_driver_react: "",
+                      involved_driver_evidence: "",
+                      penalty_classification: "",
+                      offense: "",
+                      details: "",
+                      penalty_time: "",
+                      penalty_positions: "",
+                      penalty_points: "",
+                      warning: "",
+                      penalty_action: "",
+                      penalty_action_value: "",
+                      status: "in progress",
+                  };
+                  database.ref('incidents').push(incident_data)
+                  .then(function(snapshot) {
+                      const incidentID = snapshot.key; // Retrieve the incident ID from the snapshot
+                      incident_data.incident_id = incidentID; // Add incident ID to incident_data
+
+                      send_discord_incident(incident_data, data);
+                      window.location.href = "home.html";
+                      alert("Incident was added successfully");
+                  })
+                  .catch(function(error) {
+                      alert(error.message);
+                  });
+              }
+          });
       }
-    })
-    .catch((error) => {
+  })
+  .catch((error) => {
       console.error('Error reading data:', error);
-    });
+  });
 }
 
-function send_discord_incident(incidentDetails) {
+function send_discord_incident(incidentDetails, userData) {
   const request = new XMLHttpRequest();
   request.open("POST", "https://discord.com/api/webhooks/1230401557908946944/5AyFJUUee0o26hH1Qf1KB5k4mpaUrTYUDUv-clWIvPRn_E3omKDZlnODNPFh_ZDjC69I");
   request.setRequestHeader('Content-type', 'application/json');
-  
+
+  const createdDriver = getUserIDFromFullName(incidentDetails.created_driver, userData);
+  const involvedDriverID = getUserIDFromFullName(incidentDetails.involved_driver, userData);
+  const otherDriversIDs = getUserIDFromFullName(incidentDetails.other_drivers, userData);
+
   const params = {
-    username: "PSGIL Stweard Bot V1.0",
-    avatar_url: "",
-    content: `New incident added:\n
-              Category: ${incidentDetails.category}\n
-              League/Race: ${incidentDetails.league_race}\n
-              Created Driver: ${incidentDetails.created_driver}\n
-              Involved Driver: <@guyrapke>\n
-              Other Drivers: ${incidentDetails.other_drivers}\n
-              Session Type: ${incidentDetails.session_type}\n
-              Lap: ${incidentDetails.lap}\n
-              Evidence: ${incidentDetails.evidence}\n
-              Evidence2: ${incidentDetails.evidence2}\n
-              Description: ${incidentDetails.description}`
+      username: "PSGIL Steward Bot V1.0",
+      avatar_url: "",
+      content: `Incident was added with ID: ${incidentDetails.incident_id}\n
+          Category: ${incidentDetails.category}\n
+          League/Race: ${incidentDetails.league_race}\n
+          Created Driver: <@${createdDriver}>\n
+          Involved Driver: <@${involvedDriverID}>\n
+          Other Drivers: <@${otherDriversIDs}>\n
+          Session Type: ${incidentDetails.session_type}\n
+          Lap: ${incidentDetails.lap}\n
+          Evidence: ${incidentDetails.evidence}\n
+          Evidence2: ${incidentDetails.evidence2}\n
+          Description: ${incidentDetails.description}`
   };
-  
+
   request.send(JSON.stringify(params));
+}
+
+function getUserIDFromFullName(fullName, userData) {
+  for (const key in userData) {
+      if (userData.hasOwnProperty(key) && userData[key].full_name === fullName) {
+          return userData[key].discord_id; // Returning the discord ID from the database
+      }
+  }
+  return ""; // Returning empty string if user not found
 }
 
 //${incidentDetails.involved_driver}
